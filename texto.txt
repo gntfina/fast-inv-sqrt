@@ -1,0 +1,638 @@
+
+
+
+Logaritmo na base 
+2
+
+
+  Queremos achar 
+V 
+y
+​
+ = 
+√ 
+V 
+x
+​
+ 
+​
+ 
+1
+​
+ 
+. Tirando o logaritmo na base 
+2
+ dos dois lados, podemos deixar de nos preocupar com a raiz.
+
+
+
+V 
+y
+​
+ = 
+√ 
+V 
+x
+​
+ 
+​
+ 
+1
+​
+ ⟹log 
+2
+​
+ (V 
+x
+​
+ )=− 
+2
+1
+​
+ log 
+2
+​
+ (V 
+x
+​
+ )
+.
+
+
+
+  Infelizmente, apesas de nos livrarmos da raiz, agora temos que nos preocupar com o logaritmo. Entretanto, há uma relação surpreendente entre os tópicos já vistos e o logaritmo 
+–0.2
+–0.2
+–0.2
+0.2
+0.2
+0.2
+0.4
+0.4
+0.4
+0.6
+0.6
+0.6
+0.8
+0.8
+0.8
+1
+1
+1
+0.2
+0.2
+0.2
+0.4
+0.4
+0.4
+0.6
+0.6
+0.6
+0.8
+0.8
+0.8
+1
+1
+1
+0
+0
+0
+Em azul: 
+f(x)=log 
+2
+​
+ (x+1)
+; Em verde: 
+f(x)=x+μ
+
+graças à aproximação 
+log 
+2
+​
+ (x+1)≈x+μ
+ para 
+0≤x≤1
+, onde 
+μ
+ é apenas uma constante. Podemos mostrar isso tirando o logaritmo na base 
+2
+ de um valor 
+V
+ arbitrário. Com o conhecimento que ja temos,  sabemos que 
+log 
+2
+​
+ (V)=log 
+2
+​
+ (1+ 
+2 
+23
+ 
+M
+​
+ )+log 
+2
+​
+ (2 
+E−127
+ )
+. Como 
+0≤ 
+2 
+23
+ 
+M
+​
+ ≤1
+, podemos usar nossa aproximação. Dessa forma, teremos 
+log 
+2
+​
+ (V)≈ 
+2 
+23
+ 
+2 
+23
+ E+M
+​
+ +μ−127
+. Sabendo que se interpretassemos os mesmo bits na mesma ordem, teriamos 
+R=2 
+23
+ E+M
+, que é exatamente o que aparece na nossa conta. Portanto, temos que 
+log 
+2
+​
+ (V)≈ 
+2 
+23
+ 
+R
+​
+ +μ−127
+.
+
+
+Resolução
+
+
+  Com isso, temos tudo o que precisamos para resolver o problema inical. Vamos passo a passo para englobar todas as ideias.
+
+
+
+V 
+y
+​
+ = 
+√ 
+V 
+x
+​
+ 
+​
+ 
+1
+​
+ ⟹
+log 
+2
+​
+ (V 
+y
+​
+ )=− 
+2
+1
+​
+ log 
+2
+​
+ (V 
+x
+​
+ )⟹
+2 
+23
+ 
+R 
+y
+​
+ 
+​
+ +μ−127≈− 
+2
+1
+​
+ ( 
+2 
+23
+ 
+R 
+x
+​
+ 
+​
+ +μ−127)⟹
+R 
+y
+​
+ ≈3⋅2 
+22
+ (127−μ)− 
+2
+R 
+x
+​
+ 
+​
+ ⟹
+R 
+y
+​
+ ≈C− 
+2
+R 
+x
+​
+ 
+​
+ 
+​
+ 
+
+
+
+  Isso no levou a uma relação da disposição dos bits do argumento com a disposição dos bits da resposta, já que 
+C
+ é uma constante. Usando o numpy , podemos alternar como lemos os bits (como flutuante ou inteiro) e, portanto, resolver se forma extremamente rápida o problema.
+
+  A última coisa que precisamos é achar essa constante 
+C
+. Vale ressaltar que, apesar de ser possível encontrar matematicamente o melhor 
+C
+ a diminuir o erro, dado a precisão da máquina em determinadas distribuições de entrada, faz-se mais preciso usar um valor empírico diferente para essa constante. Entretanto, o valor matemático de 
+C
+ ainda é excelente na prática.
+
+  Vamos passar o passo a passo de como encontrar matematicamente o valor de 
+C
+. Como 
+C
+ depende de 
+μ
+, precisamos primeiro definir 
+μ
+. Essa constante deve ser a que melhor aproxima as funções 
+f(x)=log 
+2
+​
+ (x+1)
+ e 
+g(x)=x+μ
+ no intervalo 
+[0,1]
+. Ou seja, queremos 
+μ
+ tal que a 
+f(x)−g(x)
+ seja 
+0
+ no intervalo 
+[0,1]
+. Dessa forma, temos:
+
+
+
+∫ 
+0
+1
+​
+ (f(x)−g(x))dx=0⟹
+∫ 
+0
+1
+​
+ (log 
+2
+​
+ (x+1)−x−μ)dx=0⟹
+μ= 
+ln2
+1
+​
+ ∫ 
+0
+1
+​
+ ln(x+1)dx− 
+2
+1
+​
+ ⟹
+μ= 
+ln2
+1
+​
+ (2ln(2)−1)− 
+2
+1
+​
+ ⟹
+μ= 
+2
+3
+​
+ − 
+ln2
+1
+​
+ 
+​
+ 
+
+
+
+  Como 
+C=3⋅2 
+22
+ (127−μ)
+, temos 
+C=3⋅2 
+22
+ (127− 
+2
+3
+​
+ + 
+ln2
+1
+​
+ )⟹C=3⋅2 
+21
+ (251+ 
+ln2
+2
+​
+ )
+. Agora temos tudo que precisamos para encontrar uma ótima aproximação da recíproca da raiz quadrada de qualquer valor.
+
+
+
+Método Newton-Raphson
+
+
+  Apesar de já termos um ótimo método para resolver nosso problema, ainda podemos melhorá-lo usando o método Newton-Raphson. Pense da seguinte forma: ao aplicarmos nosso método, temos 
+V 
+y
+​
+ 
+ tal que:
+
+
+
+V 
+y
+​
+ ≈ 
+√ 
+V 
+x
+​
+ 
+​
+ 
+1
+​
+ ⟹ 
+V 
+y
+2
+​
+ 
+1
+​
+ −V 
+x
+​
+ ≈0
+
+
+
+  Dessa forma, podemos usar 
+V 
+y
+​
+ 
+ como variável e transformar essa expressão na função erro 
+f(V)= 
+V 
+2
+ 
+1
+​
+ −V 
+x
+​
+ 
+. Sabemos que existe um valor 
+V 
+0
+​
+ =V 
+y
+​
+ 
+ que, quando passado com 
+P
+P
+P
+2
+2
+2
+P
+P
+P
+1
+1
+1
+argumento na função erro, temos 
+0
+. Ou seja, o valor 
+V 
+0
+​
+ 
+ é o resultado real do nosso problema inicial. Temos então dois pontos no gráfico dessa função erro: 
+P 
+1
+​
+ =(V 
+y
+​
+ , 
+V 
+y
+2
+​
+ 
+1
+​
+ −V 
+x
+​
+ )
+ e 
+P 
+2
+​
+ =(V 
+0
+​
+ ,0)
+. Como os dois pontos devem estar próximos em do outro, a tangente da reta que contém os pontos deve ser muito próxima da inclinação da reta tangente ao gráfico em 
+P 
+1
+​
+ 
+. Assim temos:
+
+
+dV
+d
+​
+ f(V 
+y
+​
+ )≈ 
+V 
+y
+​
+ −V 
+0
+​
+ 
+V 
+y
+2
+​
+ 
+1
+​
+ −V 
+x
+​
+ −0
+​
+ ⟹
+− 
+V 
+y
+3
+​
+ 
+2
+​
+ ≈ 
+V 
+y
+​
+ −V 
+0
+​
+ 
+V 
+y
+2
+​
+ 
+1
+​
+ −V 
+x
+​
+ 
+​
+ ⟹
+V 
+0
+​
+ −V 
+y
+​
+ ≈ 
+2
+V 
+y
+​
+ (1−V 
+x
+​
+ V 
+y
+2
+​
+ )
+​
+ ⟹
+V 
+0
+​
+ ≈V 
+y
+​
+ ( 
+2
+3
+​
+ − 
+2
+V 
+x
+​
+ V 
+y
+2
+​
+ 
+​
+ )
+​
+ 
+
+
+
+  Assim, com a nossa aproximação, nos conseguimos melhorar a precisão do resultado. Note que podemos reutilizar esse método quantas vezes quisermos, entretanto normalmente utilizar-lo uma vez já nos dá um resultado com precisão excepcional. 
+
+
+
+Código
+
+
+  Focando na implementação,  temos:
+
+
+
+import numpy as np
+
+def fastInvSqrtRoot​(n: float) -> float:
+    # aproximação da constante C passado em hexadecimal
+    # valor matemático: 0x5f34ff58
+    # valor empírico: 0x5f3759df
+    C = np.int32(0x5f3759df)
+    
+    # convertento n em np.float32 para acessar a leitura de bits
+    n = np.float32(n)
+    # interpretando os bits como inteiro
+    i = n.view(int32)
+    # encontrando os bits do resultado
+    i = C - (i >> 1)
+    # interpretando os bits do resultado como flutuante
+    y = i.view(float32)
+    
+    # método Newton-Raphson
+    y *= (1.5 - 0.5 * n * y * y)
+    
+    return float(y)

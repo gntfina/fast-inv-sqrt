@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logaritmo</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <main>
+        <nav id="secao">
+            <div id="logo"></div>
+            <h1>3. Logaritmo</h1>
+            <ul>
+                <li><a href="index.html">1. Fast Inverse Square Root</a></li>
+                <li><a href="valor-e-representação.html">2. Valor e Representação</a></li>
+                <li><a href="logaritmo.html">3. Logaritmo</a></li>
+                <li><a href="resolucao.html">4. Resolução</a></li>
+                <li><a href="newton-raphson.html">5. Método Newton-Raphson</a></li>
+                <li><a href="implementacao.html">6. Implementação</a></li>
+            </ul> 
+        </nav>
+
+        <article>
+            <section>
+                <h1>3. Logaritmo</h1>
+
+                <p>Como vimos nas seções anteriores, o cálculo de raízes &mdash; em especial da raiz quadrada &mdash; é uma operação computacionalmente custosa. Isso se torna um problema significativo em aplicações que exigem grande desempenho, como motores gráficos e simulações físicas, onde esse tipo de cálculo pode ser executado milhões de vezes por segundo.</p>
+
+                <p>Do ponto de vista matemático, muitos problemas que envolvem raízes podem ser simplificados ao reescrevê-los em termos de potências. É nesse contexto que os logaritmos se tornam uma ferramenta poderosa: eles permitem transformar relações exponenciais em relações lineares, explorando diretamente as propriedades dos expoentes.</p>
+
+                <p> No caso específico do algoritmo <em>Fast Inverse Square Root</em>, essa ideia se encaixa de forma particularmente natural. Como números de ponto flutuante seguem o padrão <em>IEEE 754</em>, sua representação interna já está ligada a potências de base \( 2 \). Logo, utilizar a função logarítmica na base \( 2 \)alinha a matemática à estrutura binária dos dados com os quais o computador trabalha.</p>
+
+                <aside class="nota">
+                    <h3>Nota</h3>
+
+                    <p>A partir dessa seção, utilizaremos uma notação para distinguir explicitamente o <em>valor matemático</em> de um número e sua <em>representação em bits</em>.</p>
+
+                    <ul>
+                        <li>
+                            \( V \) : valor real arbitrário.
+                        </li>
+                        <li>
+                            \( V_x \) : valor real associado ao argumento;
+                        </li>
+                        <li>
+                            \( V_y \) : valor real do resultado que desejamos calcular;
+                        </li>
+                        <li>
+                            \( R \) : representação inteira dos bits de um valor arbitrário.
+                        </li>
+                        <li>
+                            \( R_x \) : representação inteira dos bits do argumento, quanto interpretamos fora do padrão <em>IEEE 754</em>;
+                        </li>
+                        <li>
+                            \( R_y \) : representação inteira dos bits do resultado, quando interpretamos fora do padrão <em>IEEE 754</em>.
+                        </li>
+                    </ul>
+
+                    <p>Essa distinção será importante, pois o algoritmo opera diretamente sobre os bits do número, explorando a relação entre sua representação inteira e seu valor real.</p>
+
+                </aside>
+
+                <p>A partir da nossa expressão, aplicando o logaritmo na base \( 2 \) em ambos os lados temos:</p>
+
+                <div class="latex-bloco">
+                    $$
+                    V_{y} = \frac{1}{\sqrt{V_{x}}} \implies \log_2(V_{y}) = - \frac{1}{2} \log_2(V_x)
+                    $$
+                </div>
+
+                <p>Agora vemos &mdash; como discutido anteriormente &mdash; que a relação original, envolvendo uma raiz, foi convertida em uma relação <strong>linear entre logaritmos</strong>. Essa tranformção abre a possibilidade para aporximações lineares simples.</p>
+
+            <section>
+                <h2>3.1. Aproximação Linear</h2>
+
+                <p>Uma vez que reescrevemos o problema em termos de logaritmos, o próximo passo é compreender o que significa, na prática, tomar o logaritmo em base \( 2 \) de um número representado segundo o padrão <em>IEEE 754</em>.</p>
+
+                <p>Como visto na seção anterior, um valor positivo normalizado pode ser escrito como <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \! \cdot 2^{E-127} \)</span>. Aplicando o logaritmo em base \( 2 \) a ambos os lados e utilizando as propriedades dos logaritmos,obtemos:</p>
+
+                <div class="latex-bloco">
+                    $$
+                    \log_2(V) = \log_2 \! \left[ \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \right] \implies \log_2(V) = \log_2 \left( 1 + \frac{M}{2^{23}} \right) + E - 127
+                    $$
+                </div>
+
+                <p>Nesse ponto, toda a complexibilidade da expressão está concentrada no termo \( \log_2 \! \left( 1 + \frac{M}{2^{23}} \right) \). Podemos notar que, como a mantissa \( M \) assume valores inteiros entre \( 0 \) e <span class="latex-linha">\( 2^{23} - 1 \)</span>, o termo \( \frac{M}{2^{23}} \) está contido no intervalo \( [0, 1) \). Então precisamos encontrar um função que seja um boa aproximação da função <span class="latex-linha">\( f(x) = \log_2(1+x) \)</span>, onde <span class="latex-linha">\( x \in [0, 1) \)</span>.</p>
+
+            </section>
+
+
+                
+
+                V 
+                y
+                ​
+                = 
+                √ 
+                V 
+                x
+                ​
+
+                ​
+
+                1
+                ​
+                ⟹log 
+                2
+                ​
+                (V 
+                x
+                ​
+                )=− 
+                2
+                1
+                ​
+                log 
+                2
+                ​
+                (V 
+                x
+                ​
+                )
+                .
+
+
+
+                Infelizmente, apesas de nos livrarmos da raiz, agora temos que nos preocupar com o logaritmo. Entretanto, há uma relação surpreendente entre os tópicos já vistos e o logaritmo 
+                –0.2
+                –0.2
+                –0.2
+                0.2
+                0.2
+                0.2
+                0.4
+                0.4
+                0.4
+                0.6
+                0.6
+                0.6
+                0.8
+                0.8
+                0.8
+                1
+                1
+                1
+                0.2
+                0.2
+                0.2
+                0.4
+                0.4
+                0.4
+                0.6
+                0.6
+                0.6
+                0.8
+                0.8
+                0.8
+                1
+                1
+                1
+                0
+                0
+                0
+                Em azul: 
+                f(x)=log 
+                2
+                ​
+                (x+1)
+                ; Em verde: 
+                f(x)=x+μ
+
+                graças à aproximação 
+                log 
+                2
+                ​
+                (x+1)≈x+μ
+                para 
+                0≤x≤1
+                , onde 
+                μ
+                é apenas uma constante. Podemos mostrar isso tirando o logaritmo na base 
+                2
+                de um valor 
+                V
+                arbitrário. Com o conhecimento que ja temos,  sabemos que 
+                log 
+                2
+                ​
+                (V)=log 
+                2
+                ​
+                (1+ 
+                2 
+                23
+
+                M
+                ​
+                )+log 
+                2
+                ​
+                (2 
+                E−127
+                )
+                . Como 
+                0≤ 
+                2 
+                23
+
+                M
+                ​
+                ≤1
+                , podemos usar nossa aproximação. Dessa forma, teremos 
+                log 
+                2
+                ​
+                (V)≈ 
+                2 
+                23
+
+                2 
+                23
+                E+M
+                ​
+                +μ−127
+                . Sabendo que se interpretassemos os mesmo bits na mesma ordem, teriamos 
+                R=2 
+                23
+                E+M
+                , que é exatamente o que aparece na nossa conta. Portanto, temos que 
+                log 
+                2
+                ​
+                (V)≈ 
+                2 
+                23
+
+                R
+                ​
+                +μ−127
+                .
+                
+            </section>
+
+            <nav id="ant-prox">
+                <div id="ant">
+                    <span>Anterior</span> <br>
+                    <a href="valor-e-representação.html">2.Valor e Representação</a>
+                </div>
+
+                <div id="prox">
+                    <span>Próximo</span> <br>
+                    <a href="resolucao.html">4. Resolução</a>
+                </div>
+            </nav>
+        </article>
+    </main>
+</body>
+</html>
