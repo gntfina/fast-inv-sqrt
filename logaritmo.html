@@ -52,7 +52,7 @@
                             \( R \) : representação inteira dos bits de um valor arbitrário.
                         </li>
                         <li>
-                            \( R_x \) : representação inteira dos bits do argumento, quanto interpretamos fora do padrão <em>IEEE 754</em>;
+                            \( R_x \) : representação inteira dos bits do argumento, quando interpretamos fora do padrão <em>IEEE 754</em>;
                         </li>
                         <li>
                             \( R_y \) : representação inteira dos bits do resultado, quando interpretamos fora do padrão <em>IEEE 754</em>.
@@ -72,17 +72,18 @@
                 </div>
 
                 <p>Agora vemos &mdash; como discutido anteriormente &mdash; que a relação original, envolvendo uma raiz, foi convertida em uma relação <strong>linear entre logaritmos</strong>. Essa tranformção abre a possibilidade para aporximações lineares simples.</p>
+            </section>
 
             <section>
                 <h2>3.1. Aproximação Linear</h2>
 
                 <p>Uma vez que reescrevemos o problema em termos de logaritmos, o próximo passo é compreender o que significa, na prática, tomar o logaritmo em base \( 2 \) de um número representado segundo o padrão <em>IEEE 754</em>.</p>
 
-                <p>Como visto na seção anterior, um valor positivo normalizado pode ser escrito como <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \! \cdot 2^{E-127} \)</span>. Aplicando o logaritmo em base \( 2 \) a ambos os lados e utilizando as propriedades dos logaritmos,obtemos:</p>
+                <p>Como visto na seção anterior, um valor positivo normalizado pode ser escrito como <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \! \cdot 2^{E-127} \)</span>. Aplicando o logaritmo em base \( 2 \) a ambos os lados e utilizando as propriedades dos logaritmos, obtemos:</p>
 
                 <div class="latex-bloco">
                     $$
-                    \log_2(V) = \log_2 \! \left[ \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \right] \implies \log_2(V) = \log_2 \left( 1 + \frac{M}{2^{23}} \right) + E - 127
+                    \log_2(V) = \log_2 \! \left[ \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \right] \implies \log_2(V) = \log_2 \! \left( 1 + \frac{M}{2^{23}} \right) + E - 127
                     $$
                 </div>
 
