@@ -2,7 +2,7 @@
 
 :root {
     --azul-destaque: #0071bc;
-    --azul-claro: #0071bc5a;
+    --azul-claro: #0071bc3c;
     --cinza-escuro: #636363;
 }
 
@@ -72,16 +72,19 @@ article h1 {
     font-size: 36px;
     font-weight: normal;
     margin-bottom: 30px;
+    text-align: left;
 }
 
 article h2 {
     font-size: 32px;
     font-weight: normal;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 article p {
     margin: 5px 0px;
+    text-align: left;
 }
 
 article .nota {
