@@ -26,7 +26,7 @@
             <section>
                 <h1>2. Valor e Representação</h1>
 
-                <p>Existe uma forma padronizada de representar valores flutuantes na computação baseada na notação científica em base \( 2 \) (<em>IEEE 754</em>), já que toda informação é representada em bits. Essa notação é composta por três partes: o <em>sinal</em>, o <em>expoente</em> e a <em>mantissa</em>.</p>
+                <p>Existe uma forma padronizada de representar valores flutuantes na computação, baseada na notação científica em base \( 2 \) (<em>IEEE 754</em>), já que toda informação é representada em bits. Essa notação é composta por três partes: o <em>sinal</em>, o <em>expoente</em> e a <em>mantissa</em>.</p>
 
                 <aside class="nota">
                     <h3>Nota</h3>
@@ -50,9 +50,13 @@
 
                 <p>No caso da mantissa, como o primeiro dígito da notação científica em base \( 2 \) de qualquer binário normalizado é sempre \( 1 \), podemos representá-la armazenando apenas a parte fracionária. Esse primeiro dígito, conhecido como <em>bit implícito</em>, não precisa ser guardado, o que economiza um bit e permite maior precisão na parte fracionária. Valores especiais &mdash; como os citados acima &mdash; não seguem essa normalização, por isso existem os padrões reservados para eles.</p>
 
-                <p>Assim, tendo uma mantissa \( M \) e um expoente \( E \), sabemos que o valor armazenado é <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \)</span>. O que devemos perceber é que, se não estivéssemos usando o padrão <em>IEEE 754</em> e lêssemos os bits como um inteiro, o seu valor seria <span class="latex-linha">\( R = 2^{23} \cdot E + M \)</span>.</p>
+                [Se vira irmão. Faz uma imagem bem legal aí]
 
-                <p>Entender como encontrar o valor \( V \) e a representação \( R \) de acordo com o padrão <em>IEEE 754</em> é crucial para a compreensão do funcionamento matemático do algoritmo, como iremos explorar mais adiante.</p>
+                <p>Assim, tendo uma mantissa \( M \) e um expoente \( E \), podemos encontrar o valor armazenado de acordo com esse padrão. Primeiro, devemos dividir a mantissa por \( 2^{23} \) para obter a parte fracionária; em seguida, adicionar \( 1 \) &mdash; o <em>bit implícito</em>; por fim, basta multiplicar o resultado por \( 2^{E-127} \) para completar a notação científica. Logo, a fórmula para um valor em <em>IEEE 754</em>, dados \( M \) e \( E \), é <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E - 127} \)</span>.</p>
+                
+                <p> Note que, se organizássemos os mesmos bits da mesma forma, mas não utilizássemos o padrão <em>IEEE 754</em> para interpretá-los &mdash; isto é, se lêssemos esses bits como um número inteiro &mdash; obteríamos o valor <span class="latex-linha">\( R = 2^{23} \cdot E + M \)</span>. Isso ocorre porque os bits do expoente precisam ser deslocados 23 posições à esquerda, equivalendo a multiplicar \( E \) por \( 2^{23} \), e os bits da mantissa \( M \) devem ser somados em seguida. Chamamos esse valor de <strong>representação inteira</strong>.</p>
+
+                <p>O ponto central é que, ao reinterpretar esses bits como um inteiro, obtemos uma quantidade \( R \) que cresce quase linearmente com \( \log_2(V) \). Essa relação não é exata, mas suficientemente próxima para ser explorada por aproximações lineares &mdash; ideia que está no coração do algoritmo <em>Fast Inverse Square Root</em>. Entender essa dupla interpretação &mdash; valor real e representação inteira &mdash; é essencial, pois o algoritmo explora justamente o fato de que operações simples sobre \( R \) produzem aproximações surpreendentemente boas para funções não lineares sobre \( V \).</p>
 
             </section>
             <nav id="ant-prox">
