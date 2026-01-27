@@ -3,10 +3,8 @@
 :root {
     --azul-destaque: #0071bc;
     --azul-claro: #0071bc3c;
-    --cinza-escuro: #636363;
+    --cinza-escuro: #555;
 }
-
-
 
 main {
     display: flex;
@@ -71,20 +69,21 @@ article {
 article h1 {
     font-size: 36px;
     font-weight: normal;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     text-align: left;
+    line-height: 2em;
 }
 
 article h2 {
     font-size: 32px;
     font-weight: normal;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
+    line-height: 2em;
 }
 
 article p {
     margin: 5px 0px;
-    text-align: left;
 }
 
 article .nota {
@@ -112,7 +111,7 @@ article .latex-linha {
 }
 
 article .latex-bloco {
-    margin-top: 25px auto;
+    margin-top: 30px auto;
     overflow-x: auto;
 }
 
@@ -127,7 +126,7 @@ figure.img-esquerda {
     max-width: 350px;
     margin: 1em;
     border: 1px solid lightgray;
-    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.399);
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.26);
     border-radius: 5px;
 }
 

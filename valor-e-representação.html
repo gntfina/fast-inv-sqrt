@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valor e Representação</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 500px)">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -49,7 +50,7 @@
 
                 <p>No caso da mantissa, como o primeiro dígito da notação científica em base \( 2 \) de qualquer binário normalizado é sempre \( 1 \), podemos representá-la armazenando apenas a parte fracionária. Esse primeiro dígito, conhecido como <em>bit implícito</em>, não precisa ser guardado, o que economiza um bit e permite maior precisão na parte fracionária. Valores especiais - como os citados acima - não seguem essa normalização, por isso existem os padrões reservados para eles.</p>
 
-                <p>Assim, tendo uma mantissa \( M \) e um expoente \( E \), sabemos que o valor armazenado é \( V = \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \). O que devemos perceber é que, se não estivéssemos usando o padrão <em>IEEE 754</em> e lêssemos os bits como um inteiro, o seu valor seria \( R = 2^{23} \cdot E + M \).</p>
+                <p>Assim, tendo uma mantissa \( M \) e um expoente \( E \), sabemos que o valor armazenado é <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \)</span>. O que devemos perceber é que, se não estivéssemos usando o padrão <em>IEEE 754</em> e lêssemos os bits como um inteiro, o seu valor seria <span class="latex-linha">\( R = 2^{23} \cdot E + M \)</span>.</p>
 
                 <p>Entender como encontrar o valor \( V \) e a representação \( R \) de acordo com o padrão <em>IEEE 754</em> é crucial para a compreensão do funcionamento matemático do algoritmo, como iremos explorar mais adiante.</p>
 

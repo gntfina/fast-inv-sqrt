@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+article {
+    padding: 40px 10px;
+}
+
+
+figure.img-esquerda {
+    float: none;
+    width: 100vw;
+    margin: 10px auto;
+}
+
+div.latex-bloco {
+    font-size: 13px;
+}
