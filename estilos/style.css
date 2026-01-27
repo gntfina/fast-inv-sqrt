@@ -111,7 +111,7 @@ article .latex-linha {
 }
 
 article .latex-bloco {
-    margin-top: 30px auto;
+    margin: 10px 0px;
     overflow-x: auto;
 }
 
