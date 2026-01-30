@@ -31,12 +31,15 @@
 
                 <figure class="img-esquerda">
                     <img src="imagens/newton-raphson.png" alt="">
-                    <figcaption>OI</figcaption>
+                    <figcaption>TEm que fazer outra... ficou muito pequeno</figcaption>
                 </figure>
                 
                 <p>A ideia central do método é a seguinte: dada uma função <span class="latex-linha">\( f : \mathbb{R} \rightarrow \mathbb{R} \)</span> e uma aproximação inicial \( x_0 \) suficientemente próxima de uma raiz, podemos obter uma aproximação melhor utilizando a reta tangente ao gráfico de \( f \) no ponto \( x_0 \). O ponto onde essa reta intercepta o eixo \( x \) fornece uma nova estimativa, geralmente mais precisa que a anterior.</p>
                 
                 <p> Em termos matemáticos, esse processo equivale a igualar a inclinação da reta tangente &mdash; dada pela derivada da função &mdash; à inclinação da reta que liga o ponto \( (x_0, f(x_0)) \) ao eixo \( x \). Sob condições bastante gerais, esse procedimento converge rapidamente para a raiz desejada. Embora existam limitações para o funcionamento do método, essas exceções são raras no contexto em que será aplicado aqui.</p>
+
+                <p>Para utilizar o método, primeiro temos que criar a função. Nós já temos \( V_y \) e \( V_x \) tais que <span class="latex-linha">\( V_y \approx \frac{1}{\sqrt{V_x}} \)</span>. Podemos reescrever esse equação como <span class="latex-linha">\( \frac{1}{V_y^2} - V_x \approx 0 \)</span>. Podemos então dizer que \( V_y \) é uma aproximação para a raiz da função \( f(V) = \frac{1}{V^2} - V_x \)</p>
+
             </section>
 
             <nav id="ant-prox">
