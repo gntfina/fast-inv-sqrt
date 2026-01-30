@@ -27,6 +27,58 @@
 
             <h1>4. Resolução</h1>
 
+            <p>Voltamos agora ao problema que motivou toda a discussão até aqui. Queremos encontrar uma forma eficiente de computar <span class="latex-linha">\( V_y = \frac{1}{\sqrt(V_x)} \)</span>.</p>
+
+            <p>Começamos mostrando como interpretar o valor real e a representação inteira de um número flutuante no padrão <em>IEEE 754</em>. Vimos que o valor real é dado por <span class="latex-linha">\( V = \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \)</span> e que a representação inteira é dada por <span class="latex-linha">\( R = 2^{23} \cdot E + M \)</span>, onde \( M \) e \( E \) são respectivamente a mantissa e o expoente.</p>
+
+            <p>Em seguida, encontramos a relação linear entre logaritmos <span class="latex-linha">\( \log_2(V_y) = - \frac{1}{2} \log_2(V_x) \)</span> e montamos a expressão <span class="latex-linha">\( \log_2(V) = \log_2(1 + \frac{M}{2^{23}}) + E - 127\)</span> que expressa o logaritmo na base \( 2 \) de números no padrão <em>IEEE 754</em>, permitindo atacar essa relação linear.</p>
+
+
+            
+            <p>Por fim, encontramos a aproximação <span class="latex-linha">\( \log_2(1+x) \approx x + \mu \)</span> para <span class="latex-linha">\( x \in (0,1] \)</span>, que é justamente a forma da parte que contém toda a complexibilidade na equação anterior.</p>
+
+            <p>Assim, se chamarmos <span class="latex-linha">\( \frac{M}{2^{23}} = x\)</span>, temos <span class="latex-linha">\( \log_2(V) = \log_2(1 + x) + E - 127 \)</span>, com <span class="latex-linha">\( x \in (0,1] \)</span>. Logo, podemos fazer a substituição com nossa aproximação e assim obtemos:</p>
+
+            <div class="latex-bloco">
+                $$
+                \log_2(V) \approx \frac{M}{2^{23}} + \mu + E - 127
+                \implies
+                \log_2(V) \approx \frac{2^{23} \cdot E + M}{2^{23}} + \mu - 127
+                $$
+            </div>
+
+            <p>Note que no numerador, temos exatamente a definição da representação inteira de valor. Logo, temos que:</p>
+
+            <div class="latex-bloco">
+                $$
+                \log_2(V) \approx \frac{R}{2^{23}} + \mu - 127
+                $$
+            </div>
+
+            <p>Dessa forma, conseguimos achar uma relação entre o valor real e a representação inteira de um número flutuante no padrão <em>IEEE 754</em>. Relação que nos permite resolver a relação linear entre logaritmos que encontramos anteriormente. Temos então:</p>
+
+            <div class="latex-bloco">
+                $$
+                \log_2(V_y) = - \frac{1}{2} \log_2(V_x)
+                \implies
+                \frac{R_y}{2^{23}} + \mu -127 \approx -\frac{1}{2} \left( \frac{R_x}{2^{23}}  + \mu -127 \right)
+                $$
+            </div>
+
+            <p>Esse achado é poderosíssimo, pois nos permite obter diretamente uma aproximação para os bits do resultado, evitando o cálculo explícito da raiz quadrada. Em outras palavras, podemos operar sobre a representação inteira do número e, ao final, reinterpretar os bits como um valor em ponto flutuante.</p>
+
+            <aside class="nota">
+                <h3>Nota</h3>
+
+                <p>Para o computador, não existe nenhuma conta envolvida na conversão entre o valor real de um número e sua representação inteira. A diferença entre essas duas formas está apenas na maneira como os mesmos bits são interpretados. Assim, para realizar a conversão, basta reinterpretar os bits como um número inteiro ou como um número em ponto flutuante.</p>
+
+                <p>Uma boa analogia é pensar na palavra <em>come</em>, que existe tanto em português quanto em inglês, mas possui significados diferentes em cada língua. Você não precisa alterar a palavra para lê-la em um idioma ou no outro; o que muda é apenas o contexto em que ela é interpretada. Da mesma forma, os bits permanecem os mesmos — apenas a forma de interpretação é diferente.</p>
+
+            </aside>
+
+            
+
+
             <nav id="ant-prox">
                 <div id="ant">
                     <span>Anterior</span> <br>
