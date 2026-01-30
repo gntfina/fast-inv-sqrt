@@ -7,17 +7,19 @@
 }
 
 main {
+    background-color: white;
     display: flex;
     font-size: 16px;
     line-height: 1.3em;
     font-family: 'Times New Roman', Times, serif;
+    max-width: 1200px;
+    margin: auto;
 }
 
 nav#secao {
     justify-content: right;
-    padding: 20px;
-    min-width: 150px;
-    max-width: 150px;
+    padding: 20px 30px;
+    flex: none;
     border-right: 1px solid lightgray;
     font-size: 12px;
     line-height: 2em;
@@ -41,6 +43,7 @@ nav#secao h1 {
 nav#secao a {
     color: var(--cinza-escuro);
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 nav#secao a:hover {
@@ -54,13 +57,12 @@ nav#secao ul {
 }
 
 article {
-    flex: 1;
+    flex: 0 1 700px;
     text-align: justify;
     padding: 40px;
     line-height: 1.5em;
     text-indent: 15px;
     margin: auto;
-    max-width: 700px;
     min-width: 0;
 }
 
