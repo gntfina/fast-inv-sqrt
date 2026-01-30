@@ -141,6 +141,7 @@ figure.img-esquerda figcaption {
     color: var(--cinza-escuro);
     text-align: center;
     font-style: italic;
+    text-indent: 0px;
 }
 
 nav#ant-prox {
