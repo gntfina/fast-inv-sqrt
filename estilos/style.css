@@ -19,7 +19,7 @@ main {
 nav#secao {
     justify-content: right;
     padding: 20px 30px;
-    flex: none;
+    flex: 0 0 200px;
     border-right: 1px solid lightgray;
     font-size: 12px;
     line-height: 2em;
