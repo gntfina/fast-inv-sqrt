@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. Método Newton-Raphson</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 500px)">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <main>
+        <nav id="secao">
+            <div id="logo"></div>
+            <h1>5. Método Newton-Raphson</h1>
+            <ul>
+                <li><a href="index.html">1. Fast Inverse Square Root</a></li>
+                <li><a href="valor-e-representação.html">2. Valor e Representação</a></li>
+                <li><a href="logaritmo.html">3. Logaritmo</a></li>
+                <li><a href="resolucao.html">4. Resolução</a></li>
+                <li><a href="newton-raphson.html">5. Método Newton-Raphson</a></li>
+                <li><a href="implementacao.html">6. Implementação</a></li>
+            </ul> 
+        </nav>
+        <article>
+            <section>
+                <h1>5. Método Newton-Raphson</h1>
+
+                <p>Apesar de termos construído um método simples e extremamente eficiente para aproximar o valor <span class="latex-linha">\( V_y = \frac{1}{\sqrt{V_x}} \)</span>, ainda há espaço para refinamento. O método de Newton-Raphson é uma ferramenta iterativa &mdash; que pode ser aplicada repetidamente &mdash; capaz de melhorar aproximações iniciais para raízes de funções.</p>
+
+                <figure class="img-esquerda">
+                    <img src="imagens/newton-raphson.png" alt="">
+                    <figcaption>OI</figcaption>
+                </figure>
+                
+                <p>A ideia central do método é a seguinte: dada uma função <span class="latex-linha">\( f : \mathbb{R} \rightarrow \mathbb{R} \)</span> e uma aproximação inicial \( x_0 \) suficientemente próxima de uma raiz, podemos obter uma aproximação melhor utilizando a reta tangente ao gráfico de \( f \) no ponto \( x_0 \). O ponto onde essa reta intercepta o eixo \( x \) fornece uma nova estimativa, geralmente mais precisa que a anterior.</p>
+                
+                <p> Em termos matemáticos, esse processo equivale a igualar a inclinação da reta tangente &mdash; dada pela derivada da função &mdash; à inclinação da reta que liga o ponto \( (x_0, f(x_0)) \) ao eixo \( x \). Sob condições bastante gerais, esse procedimento converge rapidamente para a raiz desejada. Embora existam limitações para o funcionamento do método, essas exceções são raras no contexto em que será aplicado aqui.</p>
+            </section>
+
+            <nav id="ant-prox">
+                <div id="ant">
+                    <span>Anterior</span> <br>
+                    <a href="resolucao.html">4. Resolução</a>
+                </div>
+
+                <div id="prox">
+                    <span>Próximo</span> <br>
+                    <a href="implementacao.html">6. Implementação</a>
+                </div>
+            </nav>
+        </article>
+    </main>
+</body>
