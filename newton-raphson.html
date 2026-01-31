@@ -27,18 +27,30 @@
             <section>
                 <h1>5. Método Newton-Raphson</h1>
 
-                <p>Apesar de termos construído um método simples e extremamente eficiente para aproximar o valor <span class="latex-linha">\( V_y = \frac{1}{\sqrt{V_x}} \)</span>, ainda há espaço para refinamento. O método de Newton-Raphson é uma ferramenta iterativa &mdash; que pode ser aplicada repetidamente &mdash; capaz de melhorar aproximações iniciais para raízes de funções.</p>
+                <p>Apesar de já termos construído um método simples e eficiente para computar o nosso problema inicial, ainda há espaço para melhorias. O método de Newton–Raphson é uma ferramenta iterativa &mdash; isto é, pode ser repetida indefinidamente &mdash; que nos auxilia a refinar aproximações de raízes de funções. A ideia central do método é que, se temos uma boa aproximação inicial para a raiz de uma função, podemos obter uma aproximação ainda melhor utilizando informações locais da própria função.</p>
 
                 <figure class="img-esquerda">
                     <img src="imagens/newton-raphson.png" alt="">
-                    <figcaption>TEm que fazer outra... ficou muito pequeno</figcaption>
+                    <figcaption>Tem que ver a cor.</figcaption>
                 </figure>
-                
-                <p>A ideia central do método é a seguinte: dada uma função <span class="latex-linha">\( f : \mathbb{R} \rightarrow \mathbb{R} \)</span> e uma aproximação inicial \( x_0 \) suficientemente próxima de uma raiz, podemos obter uma aproximação melhor utilizando a reta tangente ao gráfico de \( f \) no ponto \( x_0 \). O ponto onde essa reta intercepta o eixo \( x \) fornece uma nova estimativa, geralmente mais precisa que a anterior.</p>
-                
-                <p> Em termos matemáticos, esse processo equivale a igualar a inclinação da reta tangente &mdash; dada pela derivada da função &mdash; à inclinação da reta que liga o ponto \( (x_0, f(x_0)) \) ao eixo \( x \). Sob condições bastante gerais, esse procedimento converge rapidamente para a raiz desejada. Embora existam limitações para o funcionamento do método, essas exceções são raras no contexto em que será aplicado aqui.</p>
 
-                <p>Para utilizar o método, primeiro temos que criar a função. Nós já temos \( V_y \) e \( V_x \) tais que <span class="latex-linha">\( V_y \approx \frac{1}{\sqrt{V_x}} \)</span>. Podemos reescrever esse equação como <span class="latex-linha">\( \frac{1}{V_y^2} - V_x \approx 0 \)</span>. Podemos então dizer que \( V_y \) é uma aproximação para a raiz da função \( f(V) = \frac{1}{V^2} - V_x \)</p>
+                <p>Mais precisamente, seja <span class="latex-linha">\( f : \mathbb{R} \rightarrow \mathbb{R} \)</span> uma função diferenciável e seja \( x_0 \) uma aproximação inicial suficientemente próxima de uma raiz de \( f \). Consideramos então a reta tangente ao gráfico de \( f \) no ponto \( (x_0, f(x_0)) \). O ponto onde essa reta intercepta o eixo \( x \) fornece uma nova estimativa para a raiz, que em geral é mais precisa do que a anterior.</p>
+
+                <p>Em termos matemáticos, a reta tangente à função \( f \) no ponto \( x_n \) é dada por <span class="latex-linha">\( y = (x - x_n) f'(x_n) + f(x_n) \)</span>, onde \( n \) indica o índice da iteração. O método consiste em tomar como próxima aproximação \( x_{n+1} \) o valor de \( x \) para o qual essa reta cruza o eixo \( x \), isto é, quando <span class="latex-linha">\( y = 0 \)</span>. Assim, temos:</p>
+
+                <div class="latex-bloco">
+                $$
+                (x_{n+1} - x_n) f'(x_n) + f(x_n) = 0
+                \quad \Longrightarrow \quad
+                x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}.
+                $$
+                </div>
+
+                <p>Sob condições bastante gerais, esse processo converge rapidamente para a raiz desejada. Embora existam limitações para o funcionamento do método, essas exceções são raras no contexto em que ele será aplicado aqui.</p>
+
+                <p>Para utilizar o método no nosso problema, precisamos primeiro definir a função adequada. Sabemos que os valores \( V_y \) e \( V_x \) satisfazem aproximadamente a relação <span class="latex-linha">\( V_y \approx \frac{1}{\sqrt{V_x}} \)</span>. Reescrevendo essa expressão, obtemos <span class="latex-linha">\( \frac{1}{V_y^2} - V_x \approx 0 \)</span>.</p>
+
+                <p>Dessa forma, podemos interpretar \( V_y \) como uma aproximação para a raiz da função <span class="latex-linha">\( f(V) = \frac{1}{V^2} - V_x \)</span>. Aplicando o método de Newton–Raphson a essa função, conseguimos refinar iterativamente a aproximação de \( V_y \).</p>
 
             </section>
 
