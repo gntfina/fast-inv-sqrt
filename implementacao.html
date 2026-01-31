@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Implementação</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 500px)">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+
+</head>
+
+<body>
+    <main>
+        <nav id="secao">
+                <div id="logo"></div>
+                <h1>6. Implementação</h1>
+                <ul>
+                    <li><a href="index.html">1. Fast Inverse Square Root</a></li>
+                    <li><a href="valor-e-representação.html">2. Valor e Representação</a></li>
+                    <li><a href="logaritmo.html">3. Logaritmo</a></li>
+                    <li><a href="resolucao.html">4. Resolução</a></li>
+                    <li><a href="newton-raphson.html">5. Método Newton-Raphson</a></li>
+                    <li><a href="implementacao.html">6. Implementação</a></li>
+                </ul>
+            </nav>
+            <article>
+                <section>
+                    <h1>6. Implementação</h1>
+
+                    <div class="codigo">
+                        <div class="linhas-codigo">
+                            1 2 3 4 5 6 7 8 9 10
+                        </div>
+                        <div class="python">
+                            import numpy as np
+                            def fastInvSqrt(n: float) -> float
+
+
+
+                        </div>
+                    </div>
+
+<pre class="line-numbers">
+<code class="language-python">
+    import numpy as np
+
+    def fastInvSqrt(n: float) -> float:
+        # aproximação da constante C passado em hexadecimal
+        # valor matemático: 0x5f34ff58
+        # valor empírico: 
+        C = 0x5f34ff58
+
+        # convertendo n em np.float32 para acessar a leitura de bits
+        n = np.float32(n)
+
+        # interpretando os bits como inteiro
+        i = n.view(int32)
+
+        # encontrando os bits do resultado
+        i = C - (i >> 1)
+
+        #interpretando os bits do resultado como flutuante
+        y = i.view(float32)
+
+        # método Newton-Raphson
+        y *= (1.5 - 0.5 * n * y * y)
+
+        return float(y)
+
+
+</code>
+</pre>
+
+
+                </section>
+                <nav id="ant-prox">
+                    <div id="ant">
+                        <span>Anterior</span> <br>
+                        <a href="newton-raphson.html">5. Método Newton-Raphson</a>
+                    </div>
+                </nav>
+            </article>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.js"></script>
+
+    <!-- Linguagens que você quer -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+
+</body>
