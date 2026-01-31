@@ -72,7 +72,7 @@
                     $$
                 </div>
 
-                <p>Agora vemos &mdash; como discutido anteriormente &mdash; que a relação original, envolvendo uma raiz, foi convertida em uma relação <strong>linear entre logaritmos</strong>. Essa tranformção abre a possibilidade para aporximações lineares simples.</p>
+                <p>Agora vemos &mdash; como discutido anteriormente &mdash; que a relação original, envolvendo uma raiz, foi convertida em uma relação <strong>linear entre logaritmos</strong>. Essa transformação abre a possibilidade para aporximações lineares simples.</p>
             </section>
 
             <section>
@@ -90,17 +90,17 @@
                     $$
                 </div>
 
-                <p>Nesse ponto, toda a complexibilidade da expressão está concentrada no termo \( \log_2 \! \left( 1 + \frac{M}{2^{23}} \right) \). Podemos notar que, como a mantissa \( M \) assume valores inteiros entre \( 0 \) e <span class="latex-linha">\( 2^{23} - 1 \)</span>, o termo \( \frac{M}{2^{23}} \) está contido no intervalo \( [0, 1) \). Então precisamos encontrar um função que seja um boa aproximação da função <span class="latex-linha">\( f(x) = \log_2(1+x) \)</span>, onde <span class="latex-linha">\( x \in [0, 1) \)</span>.</p>
+                <p>Nesse ponto, toda a complexidade da expressão está concentrada no termo \( \log_2 \! \left( 1 + \frac{M}{2^{23}} \right) \). Podemos notar que, como a mantissa \( M \) assume valores inteiros entre \( 0 \) e <span class="latex-linha">\( 2^{23} - 1 \)</span>, o termo \( \frac{M}{2^{23}} \) está contido no intervalo \( [0, 1) \). Então precisamos encontrar um função que seja uma boa aproximação da função <span class="latex-linha">\( f(x) = \log_2(1+x) \)</span>, onde <span class="latex-linha">\( x \in [0, 1) \)</span>.</p>
 
                 <figure class="img-esquerda">
-                    <img src="imagens/aproximacao.png" alt="">
+                    <img src="imagens/aproximacao.png" alt="Gráfico da função log2(1+x) e de sua aproximação linear x + μ no intervalo [0,1)">
                     <figcaption>
                         Em azul: \( f(x) = \log_2(1 + x) \) <br>
                         Em vermelho: \( f(x) = x + \mu \)
                     </figcaption>
                 </figure>
 
-                <p>Essa função nesse intervalo é famosa na matemática por ser facilmente aproximada pela reta <span class="latex-linha">\( y=x+ \mu \)</span>, onde \( \mu \) é uma constante real que representa o melhor deslocamento vertical para aproximação da função nesse intervalo, segundo um críterio matemático bem definido.</p> 
+                <p>Essa função, nesse intervalo, é famosa na matemática por ser facilmente aproximada pela reta <span class="latex-linha">\( y=x+ \mu \)</span>, onde \( \mu \) é uma constante real que representa o melhor deslocamento vertical para aproximação da função nesse intervalo, segundo um critério matemático bem definido.</p> 
                 
                 <p>Usar essa aproximação transforma uma função não linear em uma das relações mais simples da matemática, que é computacionalmente muito mais eficiente de se avaliar. Veremos como deduzir o valor explícito de \( \mu \) &mdash; analisando o erro da aproximação &mdash; e como essa aproximação pode ser usada para resolver o problema logarítmico.</p>
             </section>
