@@ -184,6 +184,8 @@ div.codigo {
     font-family: 'Courier New', Courier, monospace;
     text-indent: 0;
     flex-flow: row wrap;
+    padding: 20px;
+    background-color: #F5F2F0;
 }
 
 div.codigo div.linhas-codigo {
@@ -191,4 +193,12 @@ div.codigo div.linhas-codigo {
     text-align: right;
     border-right: 1px solid black;
     padding-right: 10px;
+    color: #928f8d;
+    font-weight: bold;
+}
+
+div.codigo div.python {
+    flex: auto;
+    padding-left: 20px;
+    font-weight: bold;
 }
