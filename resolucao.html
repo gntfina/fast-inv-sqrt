@@ -54,7 +54,7 @@
                     $$
                 </div>
 
-                <p>Dessa forma, conseguimos achar uma relação entre o valor real e a representação inteira de um número flutuante no padrão <em>IEEE 754</em>. Dessa forma, conseguimos achar uma relação entre o valor real e a representação inteira de um número flutuante no padrão <em>IEEE 754</em>, o que nos permite resolver a relação linear entre logaritmos que encontramos anteriormente. Temos então:</p>
+                <p>Dessa forma, conseguimos achar uma relação entre o valor real e a representação inteira de um número flutuante no padrão <em>IEEE 754</em>, o que nos permite resolver a relação linear entre logaritmos que encontramos anteriormente. Temos então:</p>
 
                 <div class="latex-bloco">
                     $$
@@ -90,16 +90,16 @@
             <section>
                 <h2>4.1 Encontrando \( \mu \)</h2>
 
-                <p>Até aqui, reduzimos o problema a uma expressão puramente algébrica que relaciona a representação inteira do argumento \( R_x \) com a representação inteira do resultado \( R_y \). Resta agora determinar o valor da constante \( \mu \) que controla a qualidade da aproximação utilizada para o termps logarítmico <span class="latex-linha">\( \log_2(1+x) \)</span>, com <span class="latex-linha">\( x \in (0,1] \)</span>.</p>
+                <p>Até aqui, reduzimos o problema a uma expressão puramente algébrica que relaciona a representação inteira do argumento \( R_x \) com a representação inteira do resultado \( R_y \). Resta agora determinar o valor da constante \( \mu \) que controla a qualidade da aproximação utilizada para o termo logarítmico <span class="latex-linha">\( \log_2(1+x) \)</span>, com <span class="latex-linha">\( x \in (0,1] \)</span>.</p>
                 
                 <figure class="img-esquerda">
                     <img src="imagens/aproximacao.png" alt="">
                     <figcaption>Em azul: \( f(x) = \log_2(1+x) \) <br> Em vermelho: \( f(x) = x + \mu \)</figcaption>
                 </figure>
 
-                <p>Pode-se notar que, para alguns valores de \( x \), a aproximação está acima da função original e, para outros, está abaixo. Como \( \mu \) representa o deslocamento vertical da reta, precisamos ezcolher \( \mu \) de modo que o erro positivo e o erro negativo se equilibrem ao longo do intervalo considerado. Em outras palavras, queremos reta funciono como uma espécie de "média" da nossa função nesse intervalo.</p>
+                <p>Pode-se notar que, para alguns valores de \( x \), a aproximação está acima da função original e, para outros, está abaixo. Como \( \mu \) representa o deslocamento vertical da reta, precisamos escolher \( \mu \) de modo que o erro positivo e o erro negativo se equilibrem ao longo do intervalo considerado. Em outras palavras, queremos que a reta funcione como uma espécie de "média" da nossa função nesse intervalo.</p>
 
-                <p>Essa ideia nos leva naturalmente a impor que o erro médio da aproximação seja nulo. Para isso, igualamos a integral da diferança entre a função exata e a aproximação linear ao longo do intervalo. Assim obtemos a condição:</p>
+                <p>Essa ideia nos leva naturalmente a impor que o erro médio da aproximação seja nulo. Para isso, igualamos a integral da diferença entre a função exata e a aproximação linear ao longo do intervalo. Assim obtemos a condição:</p>
 
                 <div class="latex-bloco">
                     $$
@@ -122,7 +122,7 @@
                     C = 2^{21} \cdot 3 \cdot \left( 251 + \frac{2}{\ln(2)} \right)
                     $$
                 </div>
-                
+
                 <p>Esse valor é muito grande &mdash; por volta de \( 1.6 \times 10^{9} \) &mdash;, portanto é mais conveniente representá-lo na base hexadecimal.</p>
             </section>
 
