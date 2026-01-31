@@ -178,3 +178,17 @@ nav#ant-prox {
         display: none;
     }
 }
+
+div.codigo {
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+    text-indent: 0;
+    flex-flow: row wrap;
+}
+
+div.codigo div.linhas-codigo {
+    flex: 0 0 10px;
+    text-align: right;
+    border-right: 1px solid black;
+    padding-right: 10px;
+}
