@@ -60,14 +60,15 @@
                     </ul>
 
                     <p>Essa distinção será importante, pois o algoritmo opera diretamente sobre os bits do número, explorando a relação entre sua representação inteira e seu valor real.</p>
-
                 </aside>
 
                 <p>A partir da nossa expressão, aplicando o logaritmo na base \( 2 \) em ambos os lados temos:</p>
 
                 <div class="latex-bloco">
                     $$
-                    V_{y} = \frac{1}{\sqrt{V_{x}}} \implies \log_2(V_{y}) = - \frac{1}{2} \log_2(V_x)
+                    V_{y} = \frac{1}{\sqrt{V_{x}}}
+                    \quad \implies \quad
+                    \log_2(V_{y}) = - \frac{1}{2} \log_2(V_x)
                     $$
                 </div>
 
@@ -83,7 +84,9 @@
 
                 <div class="latex-bloco">
                     $$
-                    \log_2(V) = \log_2 \! \left[ \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \right] \implies \log_2(V) = \log_2 \! \left( 1 + \frac{M}{2^{23}} \right) + E - 127
+                    \log_2(V) = \log_2 \! \left[ \left( 1 + \frac{M}{2^{23}} \right) \cdot 2^{E-127} \right]
+                    \quad \implies \quad
+                    \log_2(V) = \log_2 \! \left( 1 + \frac{M}{2^{23}} \right) + E - 127
                     $$
                 </div>
 
