@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3. Logaritmo</title>
     <link rel="stylesheet" href="estilos/style.css">
-    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 500px)">
+    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 700px)">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
+    <header>
+        <span id="hamburguer" class="material-symbols-outlined">menu</span>
+    </header>
     <main>
         <nav id="secao">
             <div id="logo"></div>
@@ -119,5 +123,19 @@
             </nav>
         </article>
     </main>
+
+    <script>
+
+        function moverMenu () {
+            const menu = document.getElementById("secao");
+            menu.classList.toggle("ativo");
+            
+        }
+
+        const botao = document.getElementById("hamburguer");
+        botao.addEventListener("click", moverMenu);
+
+    </script>
+    
 </body>
 </html>

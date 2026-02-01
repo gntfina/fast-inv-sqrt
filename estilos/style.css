@@ -6,6 +6,10 @@
     --cinza-escuro: #555;
 }
 
+header {
+    display: none;
+}
+
 main {
     background-color: white;
     display: flex;
@@ -23,6 +27,7 @@ nav#secao {
     border-right: 1px solid lightgray;
     font-size: 12px;
     line-height: 2em;
+    user-select: none;
 }
 
 #logo {
@@ -63,6 +68,7 @@ article {
     text-indent: 15px;
     margin: auto;
     min-width: 0;
+    background-color: white;
 }
 
 article h1 {
@@ -172,13 +178,6 @@ nav#ant-prox {
     text-decoration: underline;
 }
 
-
-@media screen and (max-width: 700px) {
-    nav#secao {
-        display: none;
-    }
-}
-
 div.codigo {
     display: flex;
     font-family: 'Courier New', Courier, monospace;
@@ -202,3 +201,4 @@ div.codigo div.python {
     padding-left: 20px;
     font-weight: bold;
 }
+

@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1. Fast Inverse Square Root</title>
     <link rel="stylesheet" href="estilos/style.css" media="all">
-    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 500px)">
+    <link rel="stylesheet" href="estilos/phone.css" media="screen and (max-width: 700px)">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
+    <header>
+        <span id="hamburguer" class="material-symbols-outlined">menu</span>
+    </header>
     <main>
         <nav id="secao">
             <div id="logo"></div>
@@ -64,5 +68,21 @@
             </nav>
         </article>
     </main>
+
+    <script>
+
+        const botao = document.getElementById("hamburguer");
+        const menu = document.getElementById("secao");
+        const artigo = document.getElementsByTagName("article")[0];
+
+        function moverMenu () {
+            menu.classList.toggle("ativo");
+            artigo.classList.toggle("overlay")
+        }
+        
+        botao.addEventListener("click", moverMenu);
+
+    </script>
+
 </body>
 </html>
