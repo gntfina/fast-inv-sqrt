@@ -80,16 +80,27 @@
 
     <script>
 
+        const botao = document.getElementById("hamburguer");
+        const menu = document.getElementById("secao");
+        const artigo = document.getElementsByTagName("article")[0];
+
         function moverMenu () {
-            const menu = document.getElementById("secao");
             menu.classList.toggle("ativo");
-            
+            artigo.classList.toggle("overlay");
         }
 
-        const botao = document.getElementById("hamburguer");
+        function voltarMenu () {
+            if (menu.classList.contains("ativo")) {
+                menu.classList.toggle("ativo");
+                artigo.classList.toggle("overlay");
+            }
+        }
+
         botao.addEventListener("click", moverMenu);
 
+        artigo.addEventListener("click", voltarMenu);
+
     </script>
-    
+
 </body>
 </html>

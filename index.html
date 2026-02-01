@@ -77,10 +77,19 @@
 
         function moverMenu () {
             menu.classList.toggle("ativo");
-            artigo.classList.toggle("overlay")
+            artigo.classList.toggle("overlay");
         }
-        
+
+        function voltarMenu () {
+            if (menu.classList.contains("ativo")) {
+                menu.classList.toggle("ativo");
+                artigo.classList.toggle("overlay");
+            }
+        }
+
         botao.addEventListener("click", moverMenu);
+
+        artigo.addEventListener("click", voltarMenu);
 
     </script>
 
